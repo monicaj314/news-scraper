@@ -43,7 +43,7 @@ app.get("/scrape", function(req, res) {
     $("h2.headline").each(function(i, element) {
         var result = {};
         result.title = $(this).children("a").attr("title");
-        result.link = "<a href= 'http://www.theonion.com'" + $(this).children("a").attr("href") + ">Go to article</a>";
+        result.link = "<a href= http://www.theonion.com" + $(this).children("a").attr("href") + ">Go to article</a>";
         result.comment = [];
         // result.thumbnail = "<img src='" +  + "'/>";
 
