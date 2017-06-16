@@ -45,7 +45,7 @@ app.get("/scrape", function(req, res) {
         result.title = $(this).children("a").attr("title");
         result.link = "<a href= http://www.theonion.com" + $(this).children("a").attr("href") + ">Go to article</a>";
         result.comment = [];
-        // result.thumbnail = "<img src='" +  + "'/>";
+        console.log(result.link);
 
       var entry = new Article(result);
 
@@ -66,7 +66,7 @@ app.get("/scrape", function(req, res) {
 
 app.get("/articles/:id", function(req, res) {
   Article.findOne({ "_id": req.params.id })
-  .populate("comment")
+  .populate("Comment")
   .exec(function(error, doc) {
     if (error) {
       console.log(error);
@@ -86,7 +86,7 @@ app.post("/articles/:id", function(req, res) {
       console.log(error);
     }
     else {
-      Article.findOneAndUpdate({ "_id": req.params.id }, { "comment": doc._id })
+      Article.findOneAndUpdate({ "_id": req.params.id }, { "Comment": doc._id })
       .exec(function(err, doc) {
         if (err) {
           console.log(err);
